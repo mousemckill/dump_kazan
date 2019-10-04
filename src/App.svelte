@@ -3,10 +3,12 @@
   import ProductCard from "./ProductCard.svelte";
   import SearchBlock from "./SearchBlock.svelte";
   import PictureModal from "./PictureModal.svelte";
+  import TrainModal from "./TrainModal.svelte";
 
   let searchText = "";
   let items = productList;
   let pictureOpened = false;
+  let trainOpened = false;
 
   function changeSearchText(e) {
     searchText = e.detail.value;
@@ -29,6 +31,10 @@
 </style>
 
 <div id="app">
+  {#if !trainOpened}
+    <button on:click={() => (trainOpened = true)}>Open train</button>
+  {/if}
+
   <SearchBlock
     value={searchText}
     on:changeText={changeSearchText}
@@ -46,5 +52,9 @@
     <PictureModal
       on:click={() => (pictureOpened = false)}
       on:search={changeSearchText} />
+  {/if}
+
+  {#if trainOpened}
+    <TrainModal on:click={() => (trainOpened = false)} />
   {/if}
 </div>
