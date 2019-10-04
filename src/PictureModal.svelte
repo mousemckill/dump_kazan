@@ -2,6 +2,7 @@
   import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 
   import Modal from './Modal.svelte';
+  import { classifier } from './sketch.js';
 
   let videoRef;
   let mediaStream;
@@ -31,9 +32,20 @@
   }
 
   function onSearch() {
-    dispatch('search', {
-      value: 'Кружка'
-    })
+    classifier.classify(videoRef, (err, result) => {
+      if (err) {
+        error = true;
+      } else {
+        error = false;
+      }
+
+      console.log('Classify result');
+      console.table(result);
+
+      dispatch('search', {
+        value: result[0].label
+      })
+    });
   }
 </script>
 
