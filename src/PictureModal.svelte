@@ -1,12 +1,13 @@
 <script>
   import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 
-  import { classifier } from './sketch.js';
   import Modal from './Modal.svelte';
+  import { classifier } from './sketch.js';
 
   let videoRef;
   let mediaStream;
   let error;
+
   const dispatch = createEventDispatcher()
 
   onMount(() => {
@@ -38,7 +39,8 @@
         error = false;
       }
 
-      console.log('Classify result', result);
+      console.log('Classify result');
+      console.table(result);
 
       dispatch('search', {
         value: result[0].label

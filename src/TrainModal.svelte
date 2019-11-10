@@ -4,11 +4,15 @@
   import { classifier } from './sketch.js';
 
   function addMug() {
-    classifier.addImage(videoRef, 'кружка')
+    classifier.addImage(videoRef, 'кружка', imageAdded('Кружка'))
   }
 
   function addPen() {
-    classifier.addImage(videoRef, 'ручка')
+    classifier.addImage(videoRef, 'ручка', imageAdded('Ручка'))
+  }
+
+  function imageAdded (name) {
+    console.log('Image added: ', name);
   }
 
   function train() {

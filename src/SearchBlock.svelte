@@ -5,14 +5,14 @@
 
   const dispatch = createEventDispatcher();
 
-  function selectImage () {
-    dispatch('selectImage');
-  }
-
   function changeText (e) {
     dispatch('changeText', {
       value: e.target.value
     })
+  }
+
+  function selectImage () {
+    dispatch('selectImage');
   }
 </script>
 
